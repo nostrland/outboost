@@ -1,0 +1,154 @@
+import { useEffect, useState } from "react";
+
+const PHONE_DISPLAY = "(203) 854-5555";
+const PHONE_TEL = "+12038545555";
+
+const links = [
+  { label: "Services", href: "#services" },
+  { label: "How it works", href: "#how-it-works" },
+  { label: "FAQ", href: "#faq" },
+  { label: "Contact", href: "#contact" },
+];
+
+function IconMenu(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M4 7h16M4 12h16M4 17h16"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function IconX(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M6 6l12 12M18 6L6 18"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+export default function Nav() {
+  const [open, setOpen] = useState(false);
+
+  // Lock page scroll when the mobile menu is open
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
+
+  const close = () => setOpen(false);
+
+  return (
+    <header className="fixed left-0 right-0 top-0 z-50">
+      <div className="mx-auto max-w-6xl px-4">
+        <nav className="mt-4 flex items-center justify-between rounded-2xl border border-white/10 bg-black/40 px-4 py-3 backdrop-blur-xl">
+          <a
+            href="#"
+            className="flex items-center gap-3 text-sm font-semibold tracking-tight"
+            onClick={close}
+          >
+            <span className="grid h-9 w-9 place-items-center rounded-xl border border-white/10 bg-white/5">
+              O
+            </span>
+            <span>Outboost</span>
+          </a>
+
+          {/* Desktop links */}
+          <div className="hidden items-center gap-8 text-sm text-white/70 md:flex">
+            {links.map((l) => (
+              <a key={l.href} href={l.href} className="transition hover:text-white">
+                {l.label}
+              </a>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-3">
+            {/* Desktop call to action */}
+            <a
+              href={`tel:${PHONE_TEL}`}
+              className="sheen hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white/90 transition hover:bg-white/10 md:inline-flex"
+            >
+              Call or text {PHONE_DISPLAY}
+            </a>
+
+            <a
+              href="#contact"
+              className="sheen hidden rounded-full bg-white px-4 py-2 text-sm font-semibold text-black transition hover:bg-white/90 md:inline-flex"
+            >
+              Get a free estimate
+            </a>
+
+            {/* Mobile menu button */}
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              className="sheen inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 p-2 text-white/90 transition hover:bg-white/10 md:hidden"
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+            >
+              {open ? <IconX className="h-5 w-5" /> : <IconMenu className="h-5 w-5" />}
+            </button>
+          </div>
+        </nav>
+
+        {/* Mobile panel */}
+        {open && (
+          <div className="md:hidden">
+            {/* Backdrop */}
+            <button
+              type="button"
+              className="fixed inset-0 z-40 cursor-default bg-black/40"
+              aria-label="Close menu backdrop"
+              onClick={close}
+            />
+
+            <div className="relative z-50 mt-3 rounded-2xl border border-white/10 bg-black/60 p-4 backdrop-blur-xl">
+              <div className="space-y-2">
+                {links.map((l) => (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    onClick={close}
+                    className="block rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/90 transition hover:bg-white/10"
+                  >
+                    {l.label}
+                  </a>
+                ))}
+              </div>
+
+              <div className="mt-4 grid gap-2">
+                <a
+                  href={`tel:${PHONE_TEL}`}
+                  onClick={close}
+                  className="sheen inline-flex items-center justify-center rounded-xl bg-white px-4 py-3 text-sm font-semibold text-black transition hover:bg-white/90"
+                >
+                  Call or text {PHONE_DISPLAY}
+                </a>
+                <a
+                  href="#contact"
+                  onClick={close}
+                  className="sheen inline-flex items-center justify-center rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                >
+                  Get a free estimate
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </header>
+  );
+}

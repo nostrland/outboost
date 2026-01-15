@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://outboost.com/sitemap.xml
