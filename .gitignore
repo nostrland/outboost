@@ -27,7 +27,3 @@ dist-ssr/
 !.vscode/settings.json
 .idea/
 .DS_Store
-
-# Cursor / AI tooling (kept local, never committed)
-.cursorrules
-.cursor/
