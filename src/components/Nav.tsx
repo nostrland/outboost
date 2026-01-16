@@ -66,9 +66,9 @@ export default function Nav() {
   };
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50">
+    <header className="fixed left-0 right-0 top-0 z-50 bg-black">
       <div className="mx-auto max-w-6xl px-3 sm:px-4">
-        <nav className="mt-3 flex items-center justify-between rounded-2xl border border-white/10 bg-black/95 px-3 py-2.5 sm:mt-4 sm:px-4 sm:py-3">
+        <nav className="flex items-center justify-between border-b border-white/10 bg-black py-3 sm:py-4">
           <a
             href="#"
             className="flex items-center gap-2 text-xs font-semibold tracking-tight sm:gap-3 sm:text-sm"
@@ -142,7 +142,7 @@ export default function Nav() {
               onClick={close}
             />
 
-            <div className="relative z-50 mt-2 rounded-2xl border border-white/10 bg-black/95 p-3 sm:mt-3 sm:p-4">
+            <div className="relative z-50 mt-2 rounded-2xl border border-white/10 bg-black p-3 sm:p-4">
               <div className="space-y-1.5 sm:space-y-2">
                 {links.map((l) => (
                   <a
