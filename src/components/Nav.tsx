@@ -53,21 +53,21 @@ export default function Nav() {
 
   return (
     <header className="fixed left-0 right-0 top-0 z-50">
-      <div className="mx-auto max-w-6xl px-4">
-        <nav className="mt-4 flex items-center justify-between rounded-2xl border border-white/10 bg-black/40 px-4 py-3 backdrop-blur-xl">
+      <div className="mx-auto max-w-6xl px-3 sm:px-4">
+        <nav className="mt-3 flex items-center justify-between rounded-2xl border border-white/10 bg-black/40 px-3 py-2.5 backdrop-blur-xl sm:mt-4 sm:px-4 sm:py-3">
           <a
             href="#"
-            className="flex items-center gap-3 text-sm font-semibold tracking-tight"
+            className="flex items-center gap-2 text-xs font-semibold tracking-tight sm:gap-3 sm:text-sm"
             onClick={close}
           >
-            <span className="grid h-9 w-9 place-items-center rounded-xl border border-white/10 bg-white/5">
+            <span className="grid h-8 w-8 place-items-center rounded-xl border border-white/10 bg-white/5 sm:h-9 sm:w-9">
               O
             </span>
-            <span>Outboost</span>
+            <span className="hidden sm:inline">Outboost</span>
           </a>
 
           {/* Desktop links */}
-          <div className="hidden items-center gap-8 text-sm text-white/70 md:flex">
+          <div className="hidden items-center gap-6 text-sm text-white/70 md:flex lg:gap-8">
             {links.map((l) => (
               <a key={l.href} href={l.href} className="transition hover:text-white">
                 {l.label}
@@ -75,20 +75,21 @@ export default function Nav() {
             ))}
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             {/* Desktop call to action */}
             <a
               href={`tel:${PHONE_TEL}`}
-              className="sheen hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white/90 transition hover:bg-white/10 md:inline-flex"
+              className="sheen hidden rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/90 transition hover:bg-white/10 lg:inline-flex lg:px-4 lg:py-2 lg:text-sm"
             >
-              Call or text {PHONE_DISPLAY}
+              <span className="hidden 2xl:inline">Call or text </span>
+              {PHONE_DISPLAY}
             </a>
 
             <a
               href="#contact"
-              className="sheen hidden rounded-full bg-white px-4 py-2 text-sm font-semibold text-black transition hover:bg-white/90 md:inline-flex"
+              className="sheen hidden rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-black transition hover:bg-white/90 lg:inline-flex lg:px-4 lg:py-2 lg:text-sm"
             >
-              Get a free estimate
+              Get estimate
             </a>
 
             {/* Mobile menu button */}
@@ -115,21 +116,21 @@ export default function Nav() {
               onClick={close}
             />
 
-            <div className="relative z-50 mt-3 rounded-2xl border border-white/10 bg-black/60 p-4 backdrop-blur-xl">
-              <div className="space-y-2">
+            <div className="relative z-50 mt-2 rounded-2xl border border-white/10 bg-black/60 p-3 backdrop-blur-xl sm:mt-3 sm:p-4">
+              <div className="space-y-1.5 sm:space-y-2">
                 {links.map((l) => (
                   <a
                     key={l.href}
                     href={l.href}
                     onClick={close}
-                    className="block rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/90 transition hover:bg-white/10"
+                    className="block rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-sm font-semibold text-white/90 transition hover:bg-white/10 sm:px-4 sm:py-3"
                   >
                     {l.label}
                   </a>
                 ))}
               </div>
 
-              <div className="mt-4 grid gap-2">
+              <div className="mt-3 grid gap-2 sm:mt-4">
                 <a
                   href={`tel:${PHONE_TEL}`}
                   onClick={close}

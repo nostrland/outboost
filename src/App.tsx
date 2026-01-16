@@ -17,11 +17,11 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className="scroll-mt-28 py-16 sm:py-20">
-      <div className="mx-auto max-w-6xl px-4">
-        <div className="mb-8">
+    <section id={id} className="scroll-mt-28 py-12 sm:py-16 md:py-20">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="mb-6 sm:mb-8">
           <div className="font-mono text-xs tracking-[0.22em] text-white/45">{eyebrow}</div>
-          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+          <h2 className="mt-2 text-xl font-semibold tracking-tight text-white sm:mt-3 sm:text-2xl md:text-3xl">
             {title}
           </h2>
         </div>
@@ -185,18 +185,18 @@ function ServiceCard({
   bullets: string[];
 }) {
   return (
-    <div className="sheen group rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/7">
-      <div className="flex items-start gap-4">
-        <div className="grid h-11 w-11 place-items-center rounded-2xl border border-white/10 bg-white/5 text-white/90">
-          <Icon className="h-6 w-6" />
+    <div className="sheen group rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/7 sm:p-5">
+      <div className="flex items-start gap-3 sm:gap-4">
+        <div className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl border border-white/10 bg-white/5 text-white/90 sm:h-11 sm:w-11">
+          <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
         </div>
-        <div>
-          <div className="text-base font-semibold tracking-tight">{title}</div>
-          <div className="mt-2 text-sm leading-relaxed text-white/65">{description}</div>
+        <div className="min-w-0 flex-1">
+          <div className="text-sm font-semibold tracking-tight sm:text-base">{title}</div>
+          <div className="mt-1.5 text-xs leading-relaxed text-white/65 sm:mt-2 sm:text-sm">{description}</div>
         </div>
       </div>
 
-      <ul className="mt-4 space-y-2 text-sm text-white/70">
+      <ul className="mt-3 space-y-1.5 text-xs text-white/70 sm:mt-4 sm:space-y-2 sm:text-sm">
         {bullets.map((b) => (
           <li key={b} className="flex gap-2">
             <span className="mt-[6px] h-1.5 w-1.5 shrink-0 rounded-full bg-white/40" />
@@ -216,23 +216,23 @@ export default function App() {
       <div className="relative">
         <Nav />
 
-        <main className="pt-28">
+        <main className="pt-20 sm:pt-24 md:pt-28">
           {/* Hero */}
-          <section className="py-16 sm:py-20">
-            <div className="mx-auto max-w-6xl px-4">
+          <section className="py-12 sm:py-16 md:py-20">
+            <div className="mx-auto max-w-6xl px-4 sm:px-6">
               <div className="max-w-3xl">
-                <h1 className="text-5xl font-semibold tracking-tight text-white sm:text-7xl">
+                <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
                   Fast, friendly
                   <br />
                   computer repair.
                 </h1>
 
-                <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/70 sm:text-lg">
+                <p className="mt-5 max-w-2xl text-sm leading-relaxed text-white/70 sm:mt-6 sm:text-base md:text-lg">
                   Hardware and software repair, virus removal, data recovery, new computer setup,
                   and ongoing help. One page. Clear pricing. No nonsense.
                 </p>
 
-                <div className="mt-10 flex flex-wrap gap-3">
+                <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap">
                   <a
                     href="#contact"
                     className="sheen inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-white/90"
@@ -244,7 +244,9 @@ export default function App() {
                     href={`tel:${PHONE_TEL}`}
                     className="sheen inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
                   >
-                    Call or text {PHONE_DISPLAY}
+                    <span className="hidden sm:inline">Call or text </span>
+                    <span className="sm:hidden">Call </span>
+                    {PHONE_DISPLAY}
                   </a>
                 </div>
               </div>
@@ -253,7 +255,7 @@ export default function App() {
 
           {/* Services */}
           <Section id="services" eyebrow="SERVICES" title="Help that fixes the problem">
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-3 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3">
               <ServiceCard
                 title="Computer repair"
                 description="Hardware and software troubleshooting, done right."
@@ -295,16 +297,16 @@ export default function App() {
 
           {/* How it works */}
           <Section id="how-it-works" eyebrow="PROCESS" title="Simple, transparent steps">
-            <div className="grid gap-4 lg:grid-cols-3">
+            <div className="grid gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-3">
               {[
                 { n: "01", t: "Describe the issue", d: "Text or call with symptoms and device details." },
-                { n: "02", t: "Get a clear estimate", d: "You’ll know cost and timing before work begins." },
+                { n: "02", t: "Get a clear estimate", d: "You'll know cost and timing before work begins." },
                 { n: "03", t: "Repair and verify", d: "Fix, test, and explain what changed in plain English." },
               ].map((s) => (
-                <div key={s.n} className="sheen rounded-2xl border border-white/10 bg-white/5 p-5">
+                <div key={s.n} className="sheen rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-5">
                   <div className="font-mono text-xs tracking-[0.22em] text-white/45">{s.n}</div>
-                  <div className="mt-3 text-base font-semibold tracking-tight">{s.t}</div>
-                  <div className="mt-2 text-sm leading-relaxed text-white/65">{s.d}</div>
+                  <div className="mt-2 text-sm font-semibold tracking-tight sm:mt-3 sm:text-base">{s.t}</div>
+                  <div className="mt-1.5 text-xs leading-relaxed text-white/65 sm:mt-2 sm:text-sm">{s.d}</div>
                 </div>
               ))}
             </div>
@@ -312,17 +314,17 @@ export default function App() {
 
           {/* FAQ */}
           <Section id="faq" eyebrow="FAQ" title="Common questions">
-            <div className="space-y-3">
+            <div className="space-y-2.5 sm:space-y-3">
               {[
                 { q: "Do you work on Macs and PCs?", a: "Yes. Laptops, desktops, and common accessories." },
-                { q: "Do you offer remote help?", a: "Yes, when it’s safe and appropriate for the issue." },
-                { q: "Do you do data recovery?", a: "Yes. We’ll tell you the realistic chances up front." },
+                { q: "Do you offer remote help?", a: "Yes, when it's safe and appropriate for the issue." },
+                { q: "Do you do data recovery?", a: "Yes. We'll tell you the realistic chances up front." },
               ].map((f) => (
-                <details key={f.q} className="sheen rounded-2xl border border-white/10 bg-white/5 p-5">
-                  <summary className="cursor-pointer list-none text-sm font-semibold text-white/90">
+                <details key={f.q} className="sheen rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-5">
+                  <summary className="cursor-pointer list-none text-xs font-semibold text-white/90 sm:text-sm">
                     {f.q}
                   </summary>
-                  <p className="mt-3 text-sm leading-relaxed text-white/65">{f.a}</p>
+                  <p className="mt-2 text-xs leading-relaxed text-white/65 sm:mt-3 sm:text-sm">{f.a}</p>
                 </details>
               ))}
             </div>
@@ -330,8 +332,8 @@ export default function App() {
 
           {/* Contact */}
           <Section id="contact" eyebrow="CONTACT" title="Get help today">
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-              <p className="text-sm leading-relaxed text-white/70">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-6">
+              <p className="text-xs leading-relaxed text-white/70 sm:text-sm">
                 Call or text{" "}
                 <a
                   className="font-semibold text-white underline underline-offset-4"
@@ -342,7 +344,7 @@ export default function App() {
                 for a quick estimate.
               </p>
 
-              <div className="mt-6 flex flex-wrap gap-3">
+              <div className="mt-5 flex flex-col gap-3 sm:mt-6 sm:flex-row sm:flex-wrap">
                 <a
                   href={`tel:${PHONE_TEL}`}
                   className="sheen inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-white/90"
@@ -359,7 +361,7 @@ export default function App() {
               </div>
             </div>
 
-            <footer className="mt-10 pb-10 text-xs text-white/45">
+            <footer className="mt-8 pb-8 text-xs text-white/45 sm:mt-10 sm:pb-10">
               © {new Date().getFullYear()} Outboost. All rights reserved.
             </footer>
           </Section>
