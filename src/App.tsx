@@ -1,3 +1,4 @@
+import type React from "react";
 import Nav from "./components/Nav";
 import AnimatedBackground from "./components/AnimatedBackground";
 
@@ -180,7 +181,7 @@ function ServiceCard({
 }: {
   title: string;
   description: string;
-  Icon: (props: React.SVGProps<SVGSVGElement>) => JSX.Element;
+  Icon: (props: React.SVGProps<SVGSVGElement>) => React.ReactElement;
   bullets: string[];
 }) {
   return (
