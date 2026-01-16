@@ -185,7 +185,7 @@ function ServiceCard({
   bullets: string[];
 }) {
   return (
-    <div className="sheen group rounded-2xl border border-white/10 bg-white/5 p-4 transition-transform hover:-translate-y-0.5 hover:bg-white/7 sm:p-5">
+    <div className="group rounded-2xl border border-white/10 bg-white/5 p-4 hover:bg-white/7 sm:p-5">
       <div className="flex items-start gap-3 sm:gap-4">
         <div className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl border border-white/10 bg-white/5 text-white/90 sm:h-11 sm:w-11">
           <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
@@ -210,7 +210,7 @@ function ServiceCard({
 
 export default function App() {
   return (
-    <div className="grain-overlay relative min-h-screen bg-black text-white">
+    <div className="relative min-h-screen bg-black text-white">
       <AnimatedBackground />
 
       <div className="relative">
@@ -235,14 +235,14 @@ export default function App() {
                 <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap">
                   <a
                     href="#contact"
-                    className="sheen inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-white/90"
+                    className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-black hover:bg-white/90"
                   >
                     Get a free estimate
                   </a>
 
                   <a
                     href={`tel:${PHONE_TEL}`}
-                    className="sheen inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                    className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10"
                   >
                     <span className="hidden sm:inline">Call or text </span>
                     <span className="sm:hidden">Call </span>
@@ -303,7 +303,7 @@ export default function App() {
                 { n: "02", t: "Get a clear estimate", d: "You'll know cost and timing before work begins." },
                 { n: "03", t: "Repair and verify", d: "Fix, test, and explain what changed in plain English." },
               ].map((s) => (
-                <div key={s.n} className="sheen rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-5">
+                <div key={s.n} className="rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-5">
                   <div className="font-mono text-xs tracking-[0.22em] text-white/45">{s.n}</div>
                   <div className="mt-2 text-sm font-semibold tracking-tight sm:mt-3 sm:text-base">{s.t}</div>
                   <div className="mt-1.5 text-xs leading-relaxed text-white/65 sm:mt-2 sm:text-sm">{s.d}</div>
@@ -320,7 +320,7 @@ export default function App() {
                 { q: "Do you offer remote help?", a: "Yes, when it's safe and appropriate for the issue." },
                 { q: "Do you do data recovery?", a: "Yes. We'll tell you the realistic chances up front." },
               ].map((f) => (
-                <details key={f.q} className="sheen rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-5">
+                <details key={f.q} className="rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-5">
                   <summary className="cursor-pointer list-none text-xs font-semibold text-white/90 sm:text-sm">
                     {f.q}
                   </summary>
@@ -347,14 +347,14 @@ export default function App() {
               <div className="mt-5 flex flex-col gap-3 sm:mt-6 sm:flex-row sm:flex-wrap">
                 <a
                   href={`tel:${PHONE_TEL}`}
-                  className="sheen inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-white/90"
+                  className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-black hover:bg-white/90"
                 >
                   Call now
                 </a>
 
                 <a
                   href="#services"
-                  className="sheen inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                  className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10"
                 >
                   View services
                 </a>
