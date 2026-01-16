@@ -41,15 +41,18 @@ export default function Nav() {
 
   // Lock page scroll when the mobile menu is open
   useEffect(() => {
-    if (!open) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
-    };
+    if (open) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = prev || "";
+      };
+    }
   }, [open]);
 
-  const close = () => setOpen(false);
+  const close = () => {
+    setOpen(false);
+  };
 
   return (
     <header className="fixed left-0 right-0 top-0 z-50">
@@ -95,7 +98,14 @@ export default function Nav() {
             {/* Mobile menu button */}
             <button
               type="button"
-              onClick={() => setOpen((v) => !v)}
+              onClick={(e) => {
+                e.stopPropagation();
+                if (open) {
+                  close();
+                } else {
+                  setOpen(true);
+                }
+              }}
               className="sheen inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 p-2 text-white/90 transition hover:bg-white/10 md:hidden"
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
@@ -111,12 +121,12 @@ export default function Nav() {
             {/* Backdrop */}
             <button
               type="button"
-              className="fixed inset-0 z-40 cursor-default bg-black/40"
+              className="fixed inset-0 z-40 cursor-default bg-black/50"
               aria-label="Close menu backdrop"
               onClick={close}
             />
 
-            <div className="relative z-50 mt-2 rounded-2xl border border-white/10 bg-black/60 p-3 backdrop-blur-xl sm:mt-3 sm:p-4">
+            <div className="relative z-50 mt-2 rounded-2xl border border-white/10 bg-black/80 p-3 sm:mt-3 sm:p-4">
               <div className="space-y-1.5 sm:space-y-2">
                 {links.map((l) => (
                   <a
