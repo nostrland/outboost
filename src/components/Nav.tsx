@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 const PHONE_DISPLAY = "(203) 854-5555";
 const PHONE_TEL = "+12038545555";
@@ -38,19 +38,30 @@ function IconX(props: React.SVGProps<SVGSVGElement>) {
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
-  // Lock page scroll when the mobile menu is open
-  useEffect(() => {
+  // Lock page scroll when the mobile menu is open - use useLayoutEffect for synchronous execution
+  useLayoutEffect(() => {
     if (open) {
       const prev = document.body.style.overflow;
       document.body.style.overflow = "hidden";
       return () => {
         document.body.style.overflow = prev || "";
       };
+    } else {
+      // Immediately unlock when closing
+      document.body.style.overflow = "";
     }
   }, [open]);
 
   const close = () => {
+    // Immediately hide menu visually before React re-renders
+    if (menuRef.current) {
+      menuRef.current.style.display = 'none';
+    }
+    // Unlock scroll immediately
+    document.body.style.overflow = "";
+    // Then update state
     setOpen(false);
   };
 
@@ -99,10 +110,15 @@ export default function Nav() {
             <button
               type="button"
               onClick={(e) => {
+                e.preventDefault();
                 e.stopPropagation();
                 if (open) {
                   close();
                 } else {
+                  // Reset display style when opening
+                  if (menuRef.current) {
+                    menuRef.current.style.display = '';
+                  }
                   setOpen(true);
                 }
               }}
@@ -117,7 +133,7 @@ export default function Nav() {
 
         {/* Mobile panel */}
         {open && (
-          <div className="md:hidden">
+          <div ref={menuRef} className="md:hidden">
             {/* Backdrop */}
             <button
               type="button"
