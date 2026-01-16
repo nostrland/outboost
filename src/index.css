@@ -23,35 +23,40 @@ body {
 .grain-overlay {
   position: relative;
 }
-.grain-overlay::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.10;
-  mix-blend-mode: overlay;
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
-  background-size: 220px 220px;
+/* Disable grain on mobile for performance */
+@media (min-width: 640px) {
+  .grain-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.10;
+    mix-blend-mode: overlay;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+    background-size: 220px 220px;
+  }
 }
 
-/* Lucidity-like hover sheen */
-.sheen {
-  position: relative;
-  overflow: hidden;
-}
-.sheen::after {
-  content: "";
-  position: absolute;
-  inset: -40%;
-  transform: translateX(-60%) rotate(18deg);
-  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.10) 45%, rgba(255,255,255,0.22) 50%, rgba(255,255,255,0.10) 55%, transparent 100%);
-  opacity: 0;
-  transition: transform 600ms ease, opacity 600ms ease;
-}
-.sheen:hover::after {
-  transform: translateX(35%) rotate(18deg);
-  opacity: 1;
+/* Lucidity-like hover sheen - only on desktop for performance */
+@media (min-width: 1024px) {
+  .sheen {
+    position: relative;
+    overflow: hidden;
+  }
+  .sheen::after {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    transform: translateX(-60%) rotate(18deg);
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.10) 45%, rgba(255,255,255,0.22) 50%, rgba(255,255,255,0.10) 55%, transparent 100%);
+    opacity: 0;
+    transition: transform 600ms ease, opacity 600ms ease;
+  }
+  .sheen:hover::after {
+    transform: translateX(35%) rotate(18deg);
+    opacity: 1;
+  }
 }
 
 /* Slightly nicer default text rendering */
@@ -71,5 +76,17 @@ body {
   /* Better scrolling on mobile */
   body {
     -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Optimize rendering performance on mobile */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Force hardware acceleration for smoother animations */
+  .grain-overlay,
+  nav {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
   }
 }

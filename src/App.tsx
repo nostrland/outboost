@@ -185,7 +185,7 @@ function ServiceCard({
   bullets: string[];
 }) {
   return (
-    <div className="sheen group rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/7 sm:p-5">
+    <div className="sheen group rounded-2xl border border-white/10 bg-white/5 p-4 transition-transform hover:-translate-y-0.5 hover:bg-white/7 sm:p-5">
       <div className="flex items-start gap-3 sm:gap-4">
         <div className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl border border-white/10 bg-white/5 text-white/90 sm:h-11 sm:w-11">
           <Icon className="h-5 w-5 sm:h-6 sm:w-6" />

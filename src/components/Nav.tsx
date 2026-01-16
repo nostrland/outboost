@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 
 const PHONE_DISPLAY = "(203) 854-5555";
 const PHONE_TEL = "+12038545555";
@@ -68,7 +68,7 @@ export default function Nav() {
   return (
     <header className="fixed left-0 right-0 top-0 z-50">
       <div className="mx-auto max-w-6xl px-3 sm:px-4">
-        <nav className="mt-3 flex items-center justify-between rounded-2xl border border-white/10 bg-black/40 px-3 py-2.5 backdrop-blur-xl sm:mt-4 sm:px-4 sm:py-3">
+        <nav className="mt-3 flex items-center justify-between rounded-2xl border border-white/10 bg-black/80 px-3 py-2.5 sm:mt-4 sm:px-4 sm:py-3 sm:bg-black/40 sm:backdrop-blur-xl">
           <a
             href="#"
             className="flex items-center gap-2 text-xs font-semibold tracking-tight sm:gap-3 sm:text-sm"
@@ -149,7 +149,7 @@ export default function Nav() {
                     key={l.href}
                     href={l.href}
                     onClick={close}
-                    className="block rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-sm font-semibold text-white/90 transition hover:bg-white/10 sm:px-4 sm:py-3"
+                    className="block rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-sm font-semibold text-white/90 active:bg-white/10 sm:px-4 sm:py-3"
                   >
                     {l.label}
                   </a>
@@ -160,14 +160,14 @@ export default function Nav() {
                 <a
                   href={`tel:${PHONE_TEL}`}
                   onClick={close}
-                  className="sheen inline-flex items-center justify-center rounded-xl bg-white px-4 py-3 text-sm font-semibold text-black transition hover:bg-white/90"
+                  className="inline-flex items-center justify-center rounded-xl bg-white px-4 py-3 text-sm font-semibold text-black active:bg-white/90"
                 >
                   Call or text {PHONE_DISPLAY}
                 </a>
                 <a
                   href="#contact"
                   onClick={close}
-                  className="sheen inline-flex items-center justify-center rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                  className="inline-flex items-center justify-center rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white active:bg-white/10"
                 >
                   Get a free estimate
                 </a>
